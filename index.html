@@ -3,1452 +3,1248 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PRINT READY · Estampado Profesional Argentina</title>
+<title>PRINT READY — Fondo Transparente para Estampado</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@300;400;500;600&family=Barlow+Condensed:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-/* ════════════════════════════════════════════════════════════
-   TOKENS
-════════════════════════════════════════════════════════════ */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg0:     #03060F;
-  --bg1:     #060B18;
-  --bg2:     #090F1F;
-  --srf:     #0C1528;
-  --srf2:    #101D32;
-  --cel:     #74ACDF;
-  --cel-hi:  #AACCEE;
-  --cel-glow:rgba(116,172,223,0.18);
-  --cel-fog: rgba(116,172,223,0.07);
-  --cel-line:rgba(116,172,223,0.14);
-  --gold:    #D99A28;
-  --gold-lo: rgba(217,154,40,0.25);
-  --white:   #E8F0FA;
-  --txt:     #6A90BB;
-  --txt2:    #334D70;
-  --txt-hi:  #B8D0EE;
-  --bord:    rgba(116,172,223,0.11);
-  --bord2:   rgba(116,172,223,0.2);
-  --ok:      #38D89A;
-  --err:     #FF5555;
-  --warn:    #FFB444;
-  --mono:    'IBM Plex Mono',monospace;
-  --display: 'Bebas Neue',sans-serif;
-  --body:    'Barlow Condensed',sans-serif;
-  --r: 0px;
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cel:      #4A90D9;
+  --cel-dk:   #2B6CB8;
+  --cel-lt:   #EBF4FF;
+  --cel-mid:  rgba(74,144,217,0.12);
+  --navy:     #0D1F3C;
+  --navy2:    #1A3860;
+  --ink:      #1A2740;
+  --ink2:     #4A5E78;
+  --ink3:     #8A9DB8;
+  --line:     #E2E8F0;
+  --line2:    #CBD5E1;
+  --bg:       #F8FAFE;
+  --white:    #FFFFFF;
+  --ok:       #16A34A;
+  --err:      #DC2626;
+  --gold:     #C68B00;
+  --display:  'Bebas Neue', sans-serif;
+  --mono:     'IBM Plex Mono', monospace;
+  --body:     'Barlow', sans-serif;
 }
 
-/* ════════════════════════════════════════════════════════════
-   BASE
-════════════════════════════════════════════════════════════ */
-html,body{height:100%;overflow:hidden;}
-body{
-  font-family:var(--body);
-  background:var(--bg0);
-  color:var(--txt-hi);
-  display:flex;flex-direction:column;
+html, body { height: 100%; overflow: hidden; }
+
+body {
+  font-family: var(--body);
+  background: var(--bg);
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
 }
 
-/* ── BLUEPRINT GRID ── */
-body::before{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-  background-image:
-    linear-gradient(rgba(116,172,223,0.04) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(116,172,223,0.04) 1px,transparent 1px),
-    linear-gradient(rgba(116,172,223,0.015) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(116,172,223,0.015) 1px,transparent 1px);
-  background-size:96px 96px,96px 96px,24px 24px,24px 24px;
+/* ── FLAG STRIPE ── */
+.flag {
+  height: 4px;
+  display: flex;
+  flex-shrink: 0;
 }
-/* ── VIGNETTE ── */
-body::after{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:1;
-  background:radial-gradient(ellipse 90% 90% at 50% 50%,transparent 30%,rgba(3,6,15,.75) 100%);
+.f1 { flex: 1; background: #fff; border-top: 1px solid var(--line2); }
+.f2 { flex: 2; background: var(--cel); }
+.f3 { flex: 1; background: #fff; border-top: 1px solid var(--line2); }
+
+/* ── HEADER ── */
+header {
+  flex-shrink: 0;
+  background: var(--white);
+  border-bottom: 1.5px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 68px;
 }
 
-/* ════════════════════════════════════════════════════════════
-   AD SLOTS
-════════════════════════════════════════════════════════════ */
-.ad{
-  flex-shrink:0;width:100%;height:44px;
-  background:linear-gradient(90deg,var(--bg1),var(--srf),var(--bg1));
-  border-bottom:1px solid var(--bord);
-  display:flex;align-items:center;justify-content:center;gap:14px;
-  position:relative;z-index:50;
+.logo {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
 }
-.ad.bot{border-top:1px solid var(--bord);border-bottom:none;}
-.ad-txt{font-family:var(--mono);font-size:8px;letter-spacing:3px;color:var(--txt2);text-transform:uppercase;}
-.ad-pip{width:3px;height:3px;border-radius:50%;background:var(--cel);opacity:.35;}
-
-/* ════════════════════════════════════════════════════════════
-   HEADER
-════════════════════════════════════════════════════════════ */
-header{
-  flex-shrink:0;position:relative;z-index:50;
-  background:linear-gradient(180deg,rgba(6,11,24,.98),rgba(9,15,31,.95));
-  border-bottom:1px solid var(--bord);
+.logo-main {
+  font-family: var(--display);
+  font-size: 34px;
+  letter-spacing: 6px;
+  color: var(--navy);
+  line-height: 1;
 }
-.flag-stripe{height:2.5px;display:flex;overflow:hidden;}
-.fs-w{flex:1;background:#fff;}
-.fs-c{flex:2;background:var(--cel);}
-.fs-w2{flex:1;background:#fff;}
-.header-inner{
-  height:56px;padding:0 28px;
-  display:flex;align-items:center;justify-content:space-between;
+.logo-main span { color: var(--cel); }
+.logo-sep {
+  width: 1.5px;
+  height: 22px;
+  background: var(--line2);
+  align-self: center;
 }
-/* LOGO */
-.logo{display:flex;align-items:center;gap:14px;}
-.logo-glyph{
-  width:38px;height:38px;
-  border:1.5px solid var(--bord2);
-  background:var(--cel-fog);
-  display:flex;align-items:center;justify-content:center;
-  position:relative;overflow:hidden;flex-shrink:0;
-  transition:border-color .25s;
-}
-.logo-glyph:hover{border-color:var(--cel);}
-.logo-glyph svg{color:var(--cel);}
-.logo-glyph::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,var(--cel-glow),transparent);
-  opacity:0;transition:opacity .3s;
-}
-.logo-glyph:hover::after{opacity:1;}
-.logo-name{
-  font-family:var(--display);font-size:24px;letter-spacing:6px;
-  color:var(--white);line-height:1;display:block;
-}
-.logo-name em{color:var(--cel);font-style:normal;}
-.logo-tagline{
-  font-family:var(--mono);font-size:7px;letter-spacing:2px;
-  color:var(--txt2);display:block;margin-top:3px;text-transform:uppercase;
+.logo-sub {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--ink3);
+  text-transform: uppercase;
+  line-height: 1.4;
 }
 
-/* HEADER RIGHT */
-.hright{display:flex;align-items:center;gap:12px;}
-.h-badge{
-  font-family:var(--mono);font-size:7.5px;letter-spacing:2px;text-transform:uppercase;
-  padding:3px 9px;border:1px solid var(--bord2);color:var(--cel);
-  transition:all .2s;cursor:default;
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
-.h-badge:hover{border-color:var(--cel);background:var(--cel-fog);}
-.h-badge.gld{border-color:var(--gold-lo);color:var(--gold);}
-.h-badge.gld:hover{border-color:var(--gold);background:rgba(217,154,40,.07);}
-/* API status pill */
-.api-pill{
-  display:flex;align-items:center;gap:6px;
-  font-family:var(--mono);font-size:8px;letter-spacing:1.5px;
-  color:var(--txt2);text-transform:uppercase;
+.badge {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border: 1px solid var(--line2);
+  color: var(--ink3);
 }
-.api-dot{
-  width:7px;height:7px;border-radius:50%;background:var(--txt2);
-  transition:all .3s;flex-shrink:0;
-}
-.api-dot.on{background:var(--ok);box-shadow:0 0 8px var(--ok);}
-.api-dot.err{background:var(--err);box-shadow:0 0 8px var(--err);}
-.api-dot.busy{background:var(--warn);box-shadow:0 0 8px var(--warn);animation:apipulse 1s ease infinite;}
-@keyframes apipulse{0%,100%{opacity:1;}50%{opacity:.4;}}
-
-/* ════════════════════════════════════════════════════════════
-   APP LAYOUT
-════════════════════════════════════════════════════════════ */
-.app{
-  flex:1;min-height:0;
-  display:grid;grid-template-columns:264px 1fr;
-  position:relative;z-index:2;overflow:hidden;
+.badge.cel {
+  border-color: var(--cel);
+  color: var(--cel);
+  background: var(--cel-lt);
 }
 
-/* ════════════════════════════════════════════════════════════
-   SIDEBAR
-════════════════════════════════════════════════════════════ */
-.sidebar{
-  border-right:1px solid var(--bord);
-  background:linear-gradient(180deg,var(--bg1) 0%,var(--srf) 100%);
-  display:flex;flex-direction:column;
-  overflow-y:auto;overflow-x:hidden;
-  scrollbar-width:thin;scrollbar-color:var(--bord2) transparent;
+/* ── AD ── */
+.ad {
+  flex-shrink: 0;
+  height: 40px;
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.sidebar::-webkit-scrollbar{width:3px;}
-.sidebar::-webkit-scrollbar-thumb{background:var(--bord2);border-radius:2px;}
+.ad span {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 3px;
+  color: var(--ink3);
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+.ad.bot {
+  border-bottom: none;
+  border-top: 1px solid var(--line);
+  margin-top: auto;
+}
 
-/* ── UPLOAD ZONE ── */
-.upload-zone{
-  margin:16px;flex-shrink:0;
-  border:1.5px dashed var(--bord2);
-  padding:22px 14px;text-align:center;cursor:pointer;
-  position:relative;overflow:hidden;transition:all .25s;
-  background:var(--cel-fog);
+/* ── APP ── */
+.app {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 300px 1fr;
 }
-.upload-zone::before{
-  content:'';position:absolute;inset:-1px;
-  background:linear-gradient(135deg,var(--cel-glow),transparent 60%,var(--cel-glow));
-  opacity:0;transition:opacity .3s;pointer-events:none;
-}
-.upload-zone:hover::before,.upload-zone.drag-over::before{opacity:1;}
-.upload-zone:hover{border-color:var(--cel);border-style:solid;}
-.upload-zone.has-file{border-color:var(--gold);border-style:solid;background:rgba(217,154,40,.04);}
-#fileInput{display:none;}
-.upl-ico{font-size:30px;opacity:.35;display:block;margin-bottom:8px;transition:opacity .25s;}
-.upload-zone:hover .upl-ico{opacity:.8;}
-.upl-title{font-family:var(--display);font-size:16px;letter-spacing:4px;color:var(--white);}
-.upl-sub{font-family:var(--mono);font-size:8px;letter-spacing:1.5px;color:var(--txt2);margin-top:3px;}
-/* thumb */
-#thumbBox{display:none;margin-bottom:10px;}
-#thumbImg{width:100%;max-height:80px;object-fit:contain;border:1px solid var(--bord);}
-.thumb-meta{font-family:var(--mono);font-size:7.5px;color:var(--txt2);margin-top:3px;letter-spacing:.5px;}
-/* backend mode note */
-.be-note{
-  font-family:var(--mono);font-size:7px;letter-spacing:1px;
-  color:var(--gold);margin-top:4px;opacity:.7;
-  display:none;
-}
-.be-note.show{display:block;}
 
-/* ── TOOL ACCORDION ── */
-.tool-acc{flex:1;min-height:0;}
+/* ── LEFT PANEL ── */
+.panel {
+  background: var(--white);
+  border-right: 1.5px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line2) transparent;
+}
 
-.ts{
-  border-top:1px solid var(--bord);
-  position:relative;overflow:hidden;
-  animation:fadeIn .35s ease both;
+/* UPLOAD */
+.upload-zone {
+  margin: 24px 24px 0;
+  border: 2px dashed var(--line2);
+  padding: 28px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all .2s;
+  position: relative;
+  background: var(--bg);
 }
-.ts:nth-child(1){animation-delay:.04s;}
-.ts:nth-child(2){animation-delay:.08s;}
-.ts:nth-child(3){animation-delay:.12s;}
-.ts:nth-child(4){animation-delay:.16s;}
-@keyframes fadeIn{from{opacity:0;transform:translateX(-6px);}to{opacity:1;transform:none;}}
+.upload-zone:hover,
+.upload-zone.over {
+  border-color: var(--cel);
+  border-style: solid;
+  background: var(--cel-lt);
+}
+.upload-zone.loaded {
+  border-color: var(--cel);
+  border-style: solid;
+  background: var(--cel-lt);
+}
+#fileInput { display: none; }
 
-/* Active left accent */
-.ts::after{
-  content:'';position:absolute;left:0;top:0;bottom:0;width:2px;
-  background:linear-gradient(180deg,var(--cel),rgba(116,172,223,.2));
-  opacity:0;transition:opacity .2s;
+.upl-icon {
+  font-size: 40px;
+  display: block;
+  margin-bottom: 10px;
+  opacity: .4;
 }
-.ts.open::after{opacity:1;}
+.upl-t {
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: 4px;
+  color: var(--navy);
+  display: block;
+}
+.upl-s {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: var(--ink3);
+  margin-top: 5px;
+  display: block;
+}
 
-/* Header */
-.ts-hdr{
-  display:flex;align-items:center;cursor:pointer;
-  transition:background .15s;position:relative;
+#thumbWrap { display: none; }
+#thumbImg  { width: 100%; max-height: 96px; object-fit: contain; }
+.thumb-meta {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--ink3);
+  margin-top: 6px;
+  letter-spacing: .5px;
 }
-.ts-hdr:hover{background:var(--cel-fog);}
-.ts-num{
-  font-family:var(--display);font-size:44px;
-  line-height:1;color:var(--cel);opacity:.12;
-  padding:10px 8px 6px 14px;min-width:64px;text-align:center;
-  transition:opacity .2s;letter-spacing:0;
-}
-.ts.open .ts-num{opacity:.4;}
-.ts-meta{flex:1;padding:12px 10px 12px 0;}
-.ts-name{
-  font-family:var(--display);font-size:15px;letter-spacing:3.5px;
-  color:var(--txt-hi);display:block;line-height:1;
-}
-.ts.open .ts-name{color:var(--cel);}
-.ts-desc{
-  font-family:var(--mono);font-size:7.5px;letter-spacing:1.5px;
-  color:var(--txt2);display:block;margin-top:3px;
-}
-.ts-chev{
-  font-size:9px;color:var(--txt2);margin-right:12px;
-  transition:transform .2s,color .2s;
-}
-.ts.open .ts-chev{transform:rotate(90deg);color:var(--cel);}
 
-/* Body */
-.ts-body{
-  max-height:0;overflow:hidden;
-  transition:max-height .28s ease;
+/* CONTROLS SECTION */
+.ctrl-section {
+  padding: 24px;
+  border-bottom: 1px solid var(--line);
 }
-.ts.open .ts-body{max-height:480px;}
-.ts-inner{padding:4px 14px 14px;}
+.ctrl-heading {
+  font-family: var(--display);
+  font-size: 13px;
+  letter-spacing: 3.5px;
+  color: var(--ink2);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ctrl-heading::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
 
-/* ── CONTROLS ── */
-.ctrl{margin-bottom:9px;}
-.ctrl:last-child{margin-bottom:0;}
-.ctrl-row{display:flex;align-items:center;justify-content:space-between;}
-.clabel{
-  font-family:var(--mono);font-size:8px;letter-spacing:1.5px;
-  color:var(--txt2);text-transform:uppercase;
+/* BG MODE TABS */
+.mode-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-bottom: 18px;
 }
-.cval{font-family:var(--mono);font-size:12px;color:var(--cel);letter-spacing:1px;}
-
-/* RANGE */
-.rng{
-  -webkit-appearance:none;width:100%;height:2px;margin-top:7px;
-  background:linear-gradient(to right,var(--cel) var(--p,50%),rgba(116,172,223,.12) var(--p,50%));
-  border-radius:1px;outline:none;cursor:pointer;display:block;
+.mtab {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 9px 6px;
+  border: 1.5px solid var(--line2);
+  background: transparent;
+  color: var(--ink3);
+  cursor: pointer;
+  transition: all .15s;
+  text-align: center;
 }
-.rng::-webkit-slider-thumb{
-  -webkit-appearance:none;width:13px;height:13px;border-radius:50%;
-  background:var(--bg0);border:2px solid var(--cel);cursor:pointer;
-  box-shadow:0 0 10px rgba(116,172,223,.5);
+.mtab:hover { border-color: var(--cel); color: var(--cel); }
+.mtab.on {
+  border-color: var(--cel);
+  color: var(--white);
+  background: var(--cel);
 }
-.rng::-moz-range-thumb{width:11px;height:11px;border-radius:50%;background:var(--bg0);border:2px solid var(--cel);}
-
-/* TOGGLE */
-.tog{
-  width:36px;height:18px;border-radius:9px;
-  background:rgba(116,172,223,.08);border:1px solid var(--bord2);
-  position:relative;cursor:pointer;transition:all .2s;flex-shrink:0;
-}
-.tog.on{background:rgba(116,172,223,.2);border-color:var(--cel);}
-.tog::after{
-  content:'';position:absolute;width:10px;height:10px;border-radius:50%;
-  background:var(--txt2);top:3px;left:3px;transition:all .2s;
-}
-.tog.on::after{left:19px;background:var(--cel);box-shadow:0 0 7px var(--cel);}
-
-/* MODE GRID */
-.mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:7px;}
-.m-btn{
-  font-family:var(--mono);font-size:7.5px;letter-spacing:1.5px;text-transform:uppercase;
-  padding:6px 4px;border:1px solid var(--bord);background:transparent;
-  color:var(--txt2);cursor:pointer;transition:all .15s;text-align:center;
-}
-.m-btn:hover{border-color:var(--bord2);color:var(--txt);}
-.m-btn.active{border-color:var(--cel);color:var(--cel);background:var(--cel-fog);}
 
 /* COLOR PICK */
-.cpick-row{
-  display:flex;align-items:center;gap:8px;margin-top:8px;
-  opacity:.2;pointer-events:none;transition:opacity .2s;
+.cpick {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  opacity: .2;
+  pointer-events: none;
+  transition: opacity .2s;
 }
-.cpick-row.on{opacity:1;pointer-events:all;}
-.cpick-swatch{
-  width:26px;height:26px;border:1.5px solid var(--bord2);
-  cursor:crosshair;transition:border-color .2s;flex-shrink:0;
+.cpick.on { opacity: 1; pointer-events: all; }
+.cpick-sw {
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--line2);
+  cursor: crosshair;
+  flex-shrink: 0;
+  transition: border-color .15s;
 }
-.cpick-swatch:hover{border-color:var(--cel);}
-.cpick-info{font-family:var(--mono);font-size:7px;color:var(--txt2);letter-spacing:.5px;line-height:1.5;}
+.cpick-sw:hover { border-color: var(--cel); }
+.cpick-lbl {
+  font-family: var(--mono);
+  font-size: 9px;
+  line-height: 1.5;
+  color: var(--ink3);
+  letter-spacing: .5px;
+}
 
-/* PALETTE STRIP */
-.pal-strip{display:flex;gap:3px;margin-top:8px;flex-wrap:wrap;min-height:20px;}
-.psw{
-  width:22px;height:22px;border:1px solid rgba(255,255,255,.06);
-  cursor:default;transition:transform .15s;
+/* RANGE */
+.rng-wrap { margin-bottom: 16px; }
+.rng-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
 }
-.psw:hover{transform:scale(1.4);z-index:5;}
+.rng-lbl {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: var(--ink2);
+  text-transform: uppercase;
+}
+.rng-val {
+  font-family: var(--display);
+  font-size: 28px;
+  color: var(--cel);
+  line-height: 1;
+}
+.rng {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    var(--cel) var(--p, 40%),
+    var(--line2) var(--p, 40%)
+  );
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+.rng::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 2.5px solid var(--cel);
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(74,144,217,.3);
+}
+
+/* TOGGLE ROW */
+.tog-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.tog-lbl {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: var(--ink2);
+  text-transform: uppercase;
+}
+.tog {
+  width: 42px;
+  height: 22px;
+  border-radius: 11px;
+  background: var(--line2);
+  position: relative;
+  cursor: pointer;
+  transition: background .2s;
+  flex-shrink: 0;
+}
+.tog.on { background: var(--cel); }
+.tog::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--white);
+  top: 4px;
+  left: 4px;
+  transition: left .2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,.2);
+}
+.tog.on::after { left: 24px; }
+
+/* PROCESS BTN */
+.btn-process {
+  margin: 24px;
+  height: 58px;
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: 5px;
+  border: none;
+  cursor: pointer;
+  background: var(--cel);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all .18s;
+  position: relative;
+  overflow: hidden;
+}
+.btn-process:hover:not(:disabled) {
+  background: var(--cel-dk);
+  box-shadow: 0 6px 20px rgba(74,144,217,.35);
+  transform: translateY(-1px);
+}
+.btn-process:disabled {
+  background: var(--line2);
+  color: var(--ink3);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* PROGRESS */
+.prog {
+  height: 3px;
+  background: var(--line);
+  margin: 0 24px;
+  display: none;
+}
+.prog-fill {
+  height: 100%;
+  background: var(--cel);
+  width: 0%;
+  transition: width .3s ease;
+}
+
+/* STATUS */
+.status {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  padding: 8px 24px;
+  display: none;
+  color: var(--ink3);
+}
+.status.ok  { color: var(--ok); }
+.status.err { color: var(--err); }
+.status.run { color: var(--cel); }
+
+/* DOWNLOAD */
+.dl-section {
+  padding: 0 24px 24px;
+}
+.btn-dl {
+  width: 100%;
+  height: 52px;
+  font-family: var(--display);
+  font-size: 19px;
+  letter-spacing: 4px;
+  border: 2px solid var(--navy);
+  background: transparent;
+  color: var(--navy);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all .15s;
+}
+.btn-dl:hover:not(:disabled) {
+  background: var(--navy);
+  color: var(--white);
+}
+.btn-dl:disabled {
+  border-color: var(--line2);
+  color: var(--ink3);
+  cursor: not-allowed;
+}
+.dl-note {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--ink3);
+  letter-spacing: 1px;
+  text-align: center;
+  margin-top: 8px;
+}
+
+/* ── MAIN AREA ── */
+.main {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+/* TOOLBAR */
+.toolbar {
+  flex-shrink: 0;
+  height: 52px;
+  background: var(--white);
+  border-bottom: 1.5px solid var(--line);
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+  gap: 32px;
+}
+.tb-item {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: var(--ink3);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.tb-item strong {
+  font-weight: 500;
+  color: var(--cel);
+}
+.tb-sep { width: 1px; height: 20px; background: var(--line2); }
+.tb-hint {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: var(--ink3);
+  margin-left: auto;
+  opacity: .6;
+}
+
+/* BA VIEWER */
+.ba-wrap {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 32px;
+  position: relative;
+}
+
+.ba-viewer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  /* Checkered transparent BG */
+  background-image:
+    linear-gradient(45deg, #e4e9f2 25%, transparent 25%),
+    linear-gradient(-45deg, #e4e9f2 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #e4e9f2 75%),
+    linear-gradient(-45deg, transparent 75%, #e4e9f2 75%);
+  background-size: 22px 22px;
+  background-position: 0 0, 0 11px, 11px -11px, -11px 0;
+  background-color: #edf0f7;
+  border: 1.5px solid var(--line2);
+  cursor: col-resize;
+  user-select: none;
+}
+
+.ba-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+#cvAfter { clip-path: inset(0 50% 0 0); }
 
 /* DIVIDER */
-.sdiv{
-  height:1px;background:var(--bord);margin:0 14px;flex-shrink:0;
+.ba-div {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: var(--cel);
+  transform: translateX(-50%);
+  z-index: 10;
+  pointer-events: none;
+  box-shadow: 0 0 10px rgba(74,144,217,.5);
+}
+.ba-knob {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 2.5px solid var(--cel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 11;
+  pointer-events: none;
+  box-shadow: 0 2px 12px rgba(74,144,217,.3);
+  color: var(--cel);
+  font-size: 14px;
 }
 
-/* ── PROCESS BTN ── */
-.btn-process{
-  flex-shrink:0;margin:12px 14px;height:48px;
-  font-family:var(--display);font-size:19px;letter-spacing:5px;
-  border:none;cursor:pointer;
-  background:linear-gradient(135deg,var(--cel) 0%,var(--cel-hi) 100%);
-  color:var(--bg0);
-  display:flex;align-items:center;justify-content:center;gap:9px;
-  position:relative;overflow:hidden;transition:all .2s;
+/* LABELS */
+.ba-labels {
+  position: absolute;
+  bottom: 12px; left: 0; right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 14px;
+  z-index: 5;
+  pointer-events: none;
 }
-.btn-process:hover:not(:disabled){
-  box-shadow:0 0 28px rgba(116,172,223,.45),0 0 60px rgba(116,172,223,.12);
-  transform:translateY(-1px);
-}
-.btn-process:disabled{opacity:.2;cursor:not-allowed;transform:none;box-shadow:none;}
-.btn-process::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.22),transparent);
-  transform:translateX(-100%);pointer-events:none;
-}
-.btn-process:not(:disabled):hover::before{animation:shim .55s ease;}
-@keyframes shim{to{transform:translateX(100%);}}
-
-/* progress */
-.prog{height:2px;background:var(--bord);margin:0 14px;display:none;}
-.prog-bar{height:100%;background:linear-gradient(90deg,var(--cel),var(--cel-hi));width:0%;transition:width .3s;}
-
-/* status */
-.status-ln{
-  font-family:var(--mono);font-size:7.5px;letter-spacing:1.5px;text-transform:uppercase;
-  padding:5px 14px;display:none;border-top:1px solid var(--bord);
-}
-.status-ln.ok{color:var(--ok);}
-.status-ln.err{color:var(--err);}
-.status-ln.info{color:var(--cel);}
-
-/* ── DOWNLOADS ── */
-.dl-wrap{flex-shrink:0;padding:10px 14px;border-top:1px solid var(--bord);}
-.dl-lbl{font-family:var(--mono);font-size:7.5px;letter-spacing:2px;color:var(--txt2);text-transform:uppercase;margin-bottom:7px;}
-.dl-row{display:flex;gap:7px;}
-.btn-dl{
-  flex:1;height:36px;border:none;cursor:pointer;
-  font-family:var(--display);font-size:13px;letter-spacing:3px;
-  display:flex;align-items:center;justify-content:center;gap:5px;
-  transition:all .15s;
-}
-.btn-dl.png{background:rgba(116,172,223,.13);color:var(--cel);border:1px solid var(--bord2);}
-.btn-dl.png:hover:not(:disabled){background:rgba(116,172,223,.22);border-color:var(--cel);}
-.btn-dl.svg{background:transparent;color:var(--gold);border:1px solid var(--gold-lo);}
-.btn-dl.svg:hover:not(:disabled){background:rgba(217,154,40,.09);border-color:var(--gold);}
-.btn-dl:disabled{opacity:.18;cursor:not-allowed;}
-
-/* ════════════════════════════════════════════════════════════
-   MAIN CANVAS AREA
-════════════════════════════════════════════════════════════ */
-.main{
-  display:flex;flex-direction:column;overflow:hidden;
-  background:var(--bg0);position:relative;
+.ba-lbl {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: rgba(255,255,255,.85);
+  color: var(--ink3);
+  padding: 3px 9px;
+  border: 1px solid var(--line2);
 }
 
-/* ── SOL DE MAYO BG ── */
-.sol-bg{
-  position:absolute;width:520px;height:520px;
-  top:50%;left:50%;transform:translate(-50%,-50%);
-  opacity:.022;pointer-events:none;z-index:0;
-  animation:sol-rot 160s linear infinite;
+/* EMPTY */
+.ba-empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  pointer-events: none;
+  z-index: 3;
 }
-@keyframes sol-rot{to{transform:translate(-50%,-50%) rotate(360deg);}}
-
-/* ── BA VIEWER ── */
-.ba-wrap{
-  flex:1;min-height:0;position:relative;z-index:2;
-  display:flex;align-items:center;justify-content:center;
-  padding:16px;
+.ba-empty-ico {
+  font-size: 72px;
+  opacity: .1;
 }
-.ba-viewer{
-  position:relative;overflow:hidden;
-  width:100%;height:100%;
-  max-width:1000px;
-  background:
-    repeating-conic-gradient(#0B1222 0% 25%,#0E1830 0% 50%)
-    0 0 / 20px 20px;
-  border:1px solid var(--bord);
-  cursor:col-resize;user-select:none;
+.ba-empty-t {
+  font-family: var(--display);
+  font-size: 28px;
+  letter-spacing: 6px;
+  color: var(--ink3);
+  opacity: .4;
 }
-.ba-cv{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;}
-#cvAfter{clip-path:inset(0 50% 0 0);}
-/* divider */
-.ba-line{
-  position:absolute;top:0;bottom:0;left:50%;width:1px;
-  background:var(--cel);transform:translateX(-50%);z-index:10;pointer-events:none;
-  box-shadow:0 0 14px rgba(116,172,223,.7),0 0 30px rgba(116,172,223,.2);
-}
-.ba-knob{
-  position:absolute;top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  width:30px;height:30px;border-radius:50%;
-  background:var(--srf);border:1.5px solid var(--cel);
-  display:flex;align-items:center;justify-content:center;
-  z-index:11;pointer-events:none;
-  box-shadow:0 0 16px rgba(116,172,223,.5);
-  font-size:11px;color:var(--cel);
-}
-/* BA labels */
-.ba-lbl-row{
-  position:absolute;bottom:8px;left:0;right:0;
-  display:flex;justify-content:space-between;padding:0 10px;
-  z-index:5;pointer-events:none;
-}
-.ba-lbl{
-  font-family:var(--mono);font-size:7.5px;letter-spacing:2px;text-transform:uppercase;
-  background:rgba(3,6,15,.65);padding:3px 8px;
-  color:rgba(116,172,223,.55);
-}
-/* empty state */
-.ba-empty{
-  position:absolute;inset:0;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
-  pointer-events:none;z-index:3;
-}
-.ba-empty-ico{font-size:60px;opacity:.04;animation:blink-ico 4s ease infinite;}
-@keyframes blink-ico{0%,100%{opacity:.03;}50%{opacity:.08;}}
-.ba-empty-t{
-  font-family:var(--display);font-size:22px;letter-spacing:5px;
-  color:var(--txt2);opacity:.35;
-}
-.ba-empty-s{
-  font-family:var(--mono);font-size:8px;letter-spacing:2px;
-  color:var(--txt2);opacity:.2;
-}
-/* processing overlay */
-.proc-ov{
-  position:absolute;inset:0;z-index:20;
-  background:rgba(3,6,15,.88);backdrop-filter:blur(6px);
-  display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;
-}
-.proc-ov.on{display:flex;}
-.scan-line{
-  position:absolute;left:0;right:0;height:1.5px;
-  background:linear-gradient(90deg,transparent,var(--cel) 50%,transparent);
-  top:0%;opacity:0;pointer-events:none;
-}
-.proc-ov.on .scan-line{animation:scan-anim 2s linear infinite;}
-@keyframes scan-anim{0%{top:0%;opacity:0;}8%{opacity:.8;}92%{opacity:.8;}100%{top:100%;opacity:0;}}
-.proc-spin{
-  width:44px;height:44px;border-radius:50%;
-  border:1.5px solid var(--bord2);border-top-color:var(--cel);
-  animation:spin .7s linear infinite;
-}
-@keyframes spin{to{transform:rotate(360deg);}}
-.proc-t{font-family:var(--display);font-size:22px;letter-spacing:6px;color:var(--cel);}
-.proc-s{font-family:var(--mono);font-size:8px;letter-spacing:2px;color:var(--txt2);}
-
-/* ── SHIRTS BAR ── */
-.shirts-bar{
-  flex-shrink:0;height:176px;
-  border-top:1px solid var(--bord);
-  display:flex;background:var(--bg1);
-  position:relative;z-index:2;
-}
-.shirt-cell{
-  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:5px;border-right:1px solid var(--bord);padding:8px 6px;
-  transition:background .2s;position:relative;overflow:hidden;
-}
-.shirt-cell:last-child{border-right:none;}
-.shirt-cell:hover{background:var(--cel-fog);}
-.shirt-cv{width:auto;height:132px;}
-.shirt-lbl{
-  font-family:var(--mono);font-size:7px;letter-spacing:2.5px;
-  color:var(--txt2);text-transform:uppercase;
+.ba-empty-s {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--ink3);
+  opacity: .3;
 }
 
-/* ── COORD / STATUS BAR ── */
-.coord-bar{
-  flex-shrink:0;height:22px;border-top:1px solid var(--bord);
-  display:flex;align-items:center;padding:0 14px;gap:22px;
-  background:var(--bg1);position:relative;z-index:2;
+/* PROCESSING OVERLAY */
+.proc-ov {
+  position: absolute;
+  inset: 0;
+  background: rgba(248,250,254,.9);
+  backdrop-filter: blur(4px);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  z-index: 20;
 }
-.coord-item{
-  font-family:var(--mono);font-size:7.5px;letter-spacing:1px;color:var(--txt2);
-  display:flex;align-items:center;gap:5px;
+.proc-ov.on { display: flex; }
+.proc-spin {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 2.5px solid var(--line2);
+  border-top-color: var(--cel);
+  animation: spin .7s linear infinite;
 }
-.coord-item span{color:var(--cel);}
-.coord-item.st span{color:var(--txt2);}
-.coord-item.st.ok span{color:var(--ok);}
-.coord-item.st.busy span{color:var(--warn);}
+@keyframes spin { to { transform: rotate(360deg); } }
+.proc-t {
+  font-family: var(--display);
+  font-size: 26px;
+  letter-spacing: 6px;
+  color: var(--navy);
+}
+.proc-s {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--ink3);
+}
 
-/* ════════════════════════════════════════════════════════════
-   UTILITIES
-════════════════════════════════════════════════════════════ */
-.sep{display:flex;align-items:center;gap:8px;margin:8px 0;}
-.sep-line{flex:1;height:1px;background:var(--bord);}
-.sep-txt{font-family:var(--mono);font-size:7px;letter-spacing:2px;color:var(--txt2);text-transform:uppercase;white-space:nowrap;}
+/* BOTTOM STATUS BAR */
+.statusbar {
+  flex-shrink: 0;
+  height: 32px;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  gap: 24px;
+}
+.sb-item {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,.35);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.sb-item span { color: rgba(255,255,255,.7); }
+.sb-item.ok span { color: #4ADE80; }
+.sb-item.run span { color: var(--cel); }
+.sb-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.2);
+}
+.sb-dot.on { background: #4ADE80; box-shadow: 0 0 5px #4ADE80; }
+.sb-sep { width: 1px; height: 14px; background: rgba(255,255,255,.1); }
+
+/* SOL WATERMARK in main */
+.sol-wm {
+  position: absolute;
+  right: -80px; bottom: -80px;
+  width: 300px; height: 300px;
+  opacity: .04;
+  pointer-events: none;
+  animation: wsol 180s linear infinite;
+}
+@keyframes wsol { to { transform: rotate(360deg); } }
 </style>
 </head>
 <body>
 
-<!-- AD TOP -->
-<div class="ad">
-  <div class="ad-pip"></div>
-  <span class="ad-txt">Espacio Publicitario · 728×90 · No Intrusivo</span>
-  <div class="ad-pip"></div>
-</div>
+<div class="flag"><div class="f1"></div><div class="f2"></div><div class="f3"></div></div>
 
-<!-- ═══════════════════════════ HEADER ═══════════════════════════ -->
+<!-- ═════════════════ HEADER ═════════════════ -->
 <header>
-  <div class="flag-stripe"><div class="fs-w"></div><div class="fs-c"></div><div class="fs-w2"></div></div>
-  <div class="header-inner">
-    <div class="logo">
-      <div class="logo-glyph">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-          <rect x="3" y="3" width="18" height="18"/><path d="M3 9h18"/><path d="M9 3v6"/>
-          <circle cx="15.5" cy="15.5" r="3"/><line x1="15.5" y1="12.5" x2="15.5" y2="18.5"/><line x1="12.5" y1="15.5" x2="18.5" y2="15.5"/>
-        </svg>
-      </div>
-      <div>
-        <span class="logo-name">PRINT <em>READY</em></span>
-        <span class="logo-tagline">Limpiador de Diseños · DTF · Serigrafía · República Argentina</span>
-      </div>
-    </div>
-    <div class="hright">
-      <span class="h-badge">DTF</span>
-      <span class="h-badge">SERIGRAFIA</span>
-      <span class="h-badge gld">☀ SOL DE MAYO</span>
-      <div class="api-pill">
-        <div class="api-dot" id="apiDot"></div>
-        <span id="apiTxt">API —</span>
-      </div>
-    </div>
+  <div class="logo">
+    <div class="logo-main">PRINT <span>READY</span></div>
+    <div class="logo-sep"></div>
+    <div class="logo-sub">Limpiador de Diseños<br>para Estampado · ARG</div>
+  </div>
+  <div class="header-right">
+    <span class="badge">DTF</span>
+    <span class="badge">Serigrafía</span>
+    <span class="badge cel">☀ Argentina</span>
   </div>
 </header>
 
-<!-- ═══════════════════════════ APP ═══════════════════════════ -->
+<!-- AD TOP -->
+<div class="ad"><span>Espacio publicitario · 728×90</span></div>
+
+<!-- ═════════════════ APP ═════════════════ -->
 <div class="app">
 
-<!-- ─────────────── SIDEBAR ─────────────── -->
-<aside class="sidebar">
+  <!-- ── LEFT PANEL ── -->
+  <aside class="panel">
 
-  <!-- UPLOAD -->
-  <div class="upload-zone" id="uploadZone">
-    <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp,image/gif">
-    <div id="thumbBox">
-      <img id="thumbImg" alt="">
-      <div class="thumb-meta" id="thumbMeta"></div>
+    <!-- UPLOAD -->
+    <div class="upload-zone" id="uz">
+      <input type="file" id="fileInput" accept="image/*">
+      <div id="thumbWrap">
+        <img id="thumbImg" alt="">
+        <div class="thumb-meta" id="thumbMeta"></div>
+      </div>
+      <div id="uplPrompt">
+        <span class="upl-icon">🖼</span>
+        <span class="upl-t">SUBIR IMAGEN</span>
+        <span class="upl-s">PNG · JPG · WEBP · Arrastrá o hacé click</span>
+      </div>
     </div>
-    <div id="uploadPrompt">
-      <span class="upl-ico">🖼</span>
-      <div class="upl-title">SUBIR IMAGEN</div>
-      <div class="upl-sub">PNG · JPG · WEBP · Arrastrá o hacé click</div>
+
+    <!-- MODO BG -->
+    <div class="ctrl-section">
+      <div class="ctrl-heading">Modo de remoción</div>
+
+      <div class="mode-tabs">
+        <button class="mtab on" data-mode="auto"  onclick="setMode(this)">AUTO</button>
+        <button class="mtab"    data-mode="white" onclick="setMode(this)">FONDO BLANCO</button>
+        <button class="mtab"    data-mode="black" onclick="setMode(this)">FONDO NEGRO</button>
+        <button class="mtab"    data-mode="color" onclick="setMode(this)">COLOR EXACTO</button>
+      </div>
+
+      <div class="cpick" id="cpick">
+        <div class="cpick-sw" id="cpickSw" style="background:#E60026" onclick="startPick()"></div>
+        <div class="cpick-lbl">HACÉ CLICK EN LA<br>IMAGEN PARA ELEGIR</div>
+      </div>
+
+      <div class="rng-wrap">
+        <div class="rng-head">
+          <span class="rng-lbl">Tolerancia</span>
+          <span class="rng-val" id="tolVal">30</span>
+        </div>
+        <input type="range" class="rng" id="tolR" min="5" max="90" value="30" style="--p:29%">
+      </div>
+
+      <div class="tog-row">
+        <span class="tog-lbl">Suavizar bordes</span>
+        <div class="tog on" id="togSmooth" onclick="this.classList.toggle('on')"></div>
+      </div>
+      <div class="tog-row">
+        <span class="tog-lbl">Engrosar líneas finas</span>
+        <div class="tog on" id="togThick" onclick="this.classList.toggle('on')"></div>
+      </div>
     </div>
-    <div class="be-note" id="beNote">⚡ Procesado vía API (Sharp + Potrace)</div>
+
+    <!-- SPACER -->
+    <div style="flex:1;"></div>
+
+    <!-- PROCESS -->
+    <button class="btn-process" id="btnProcess" disabled>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      PROCESAR
+    </button>
+    <div class="prog" id="prog"><div class="prog-fill" id="progFill"></div></div>
+    <div class="status" id="statusEl"></div>
+
+    <!-- DOWNLOAD -->
+    <div class="dl-section">
+      <button class="btn-dl" id="btnDl" disabled>
+        ↓ DESCARGAR PNG TRANSPARENTE
+      </button>
+      <div class="dl-note">Siempre exporta con fondo transparente · listo para imprimir</div>
+    </div>
+
+  </aside>
+
+  <!-- ── MAIN AREA ── -->
+  <div class="main">
+
+    <!-- TOOLBAR -->
+    <div class="toolbar">
+      <div class="tb-item">DIM <strong id="tbDim">—</strong></div>
+      <div class="tb-sep"></div>
+      <div class="tb-item">MODO <strong id="tbMode">AUTO</strong></div>
+      <div class="tb-sep"></div>
+      <div class="tb-item">TOLERANCIA <strong id="tbTol">30</strong></div>
+      <span class="tb-hint">← Arrastrá el divisor para comparar</span>
+    </div>
+
+    <!-- BA VIEWER -->
+    <div class="ba-wrap">
+
+      <!-- Sol de Mayo watermark -->
+      <svg class="sol-wm" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="100" r="32" fill="#4A90D9"/>
+        <g stroke="#4A90D9" stroke-width="5" stroke-linecap="round">
+          <line x1="100" y1="20" x2="100" y2="48"/><line x1="100" y1="152" x2="100" y2="180"/>
+          <line x1="20" y1="100" x2="48" y2="100"/><line x1="152" y1="100" x2="180" y2="100"/>
+          <line x1="44" y1="44" x2="63" y2="63"/><line x1="137" y1="137" x2="156" y2="156"/>
+          <line x1="156" y1="44" x2="137" y2="63"/><line x1="63" y1="137" x2="44" y2="156"/>
+          <line x1="71" y1="28" x2="77" y2="54"/><line x1="123" y1="146" x2="129" y2="172"/>
+          <line x1="28" y1="71" x2="54" y2="77"/><line x1="146" y1="123" x2="172" y2="129"/>
+          <line x1="28" y1="129" x2="54" y2="123"/><line x1="146" y1="77" x2="172" y2="71"/>
+          <line x1="71" y1="172" x2="77" y2="146"/><line x1="123" y1="54" x2="129" y2="28"/>
+        </g>
+        <circle cx="100" cy="100" r="18" fill="#4A90D9"/>
+        <circle cx="100" cy="100" r="9" fill="#C68B00"/>
+        <circle cx="94" cy="97" r="1.8" fill="#fff"/><circle cx="106" cy="97" r="1.8" fill="#fff"/>
+        <path d="M92 104 Q100 110 108 104" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+      </svg>
+
+      <div class="ba-viewer" id="baViewer">
+        <canvas class="ba-canvas" id="cvBefore"></canvas>
+        <canvas class="ba-canvas" id="cvAfter"></canvas>
+        <div class="ba-div" id="baDiv"></div>
+        <div class="ba-knob" id="baKnob">⇔</div>
+        <div class="ba-labels">
+          <span class="ba-lbl">← ORIGINAL</span>
+          <span class="ba-lbl">PROCESADO →</span>
+        </div>
+        <div class="ba-empty" id="baEmpty">
+          <div class="ba-empty-ico">🖼</div>
+          <div class="ba-empty-t">SIN IMAGEN</div>
+          <div class="ba-empty-s">subí un diseño desde el panel izquierdo</div>
+        </div>
+        <div class="proc-ov" id="procOv">
+          <div class="proc-spin"></div>
+          <div class="proc-t" id="procT">PROCESANDO</div>
+          <div class="proc-s" id="procS">eliminando fondo...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATUS BAR -->
+    <div class="statusbar">
+      <div class="sb-item"><div class="sb-dot on" id="sbDot"></div></div>
+      <div class="sb-item" id="sbState">ESTADO <span>LISTO</span></div>
+      <div class="sb-sep"></div>
+      <div class="sb-item">MOTOR <span>CANVAS API</span></div>
+      <div class="sb-sep"></div>
+      <div class="sb-item">OUTPUT <span>PNG TRANSPARENTE</span></div>
+    </div>
+
   </div>
-
-  <!-- ══ ACCORDION ══ -->
-  <div class="tool-acc">
-
-    <!-- ── TOOL 01: REMOVER FONDO ── -->
-    <div class="ts open" id="t1">
-      <div class="ts-hdr" onclick="toggleTS('t1')">
-        <div class="ts-num">01</div>
-        <div class="ts-meta">
-          <span class="ts-name">REMOVER FONDO</span>
-          <span class="ts-desc">BG REMOVAL · FLOOD FILL · SMART MASK</span>
-        </div>
-        <span class="ts-chev">▶</span>
-      </div>
-      <div class="ts-body">
-        <div class="ts-inner">
-          <div class="ctrl">
-            <div class="clabel" style="margin-bottom:6px;">MODO DE DETECCIÓN</div>
-            <div class="mode-grid">
-              <button class="m-btn active" data-mode="auto" onclick="setMode(this,'t1')">AUTO</button>
-              <button class="m-btn" data-mode="white" onclick="setMode(this,'t1')">FONDO BLANCO</button>
-              <button class="m-btn" data-mode="black" onclick="setMode(this,'t1')">FONDO NEGRO</button>
-              <button class="m-btn" data-mode="color" onclick="setMode(this,'t1')">COLOR EXACTO</button>
-            </div>
-          </div>
-          <!-- color picker -->
-          <div class="cpick-row" id="cpickRow">
-            <div class="cpick-swatch" id="cpickSwatch" style="background:#E60026;" onclick="startPick()"></div>
-            <div class="cpick-info">CLICK EN IMAGEN<br>PARA MUESTREAR COLOR</div>
-          </div>
-          <div class="ctrl" style="margin-top:10px;">
-            <div class="ctrl-row"><span class="clabel">TOLERANCIA</span><span class="cval" id="tolV">30</span></div>
-            <input type="range" class="rng" id="tolR" min="5" max="90" value="30" style="--p:29%">
-          </div>
-          <div class="ctrl">
-            <div class="ctrl-row"><span class="clabel">SUAVIZAR BORDE</span><div class="tog on" id="togSmooth" onclick="this.classList.toggle('on')"></div></div>
-          </div>
-          <div class="ctrl">
-            <div class="ctrl-row"><span class="clabel">ANTI-ALIAS</span><div class="tog on" id="togAA" onclick="this.classList.toggle('on')"></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── TOOL 02: ENGROSAR ── -->
-    <div class="ts" id="t2">
-      <div class="ts-hdr" onclick="toggleTS('t2')">
-        <div class="ts-num">02</div>
-        <div class="ts-meta">
-          <span class="ts-name">ENGROSAR LÍNEAS</span>
-          <span class="ts-desc">DILATACIÓN MORFOLÓGICA · SHARP DILATE</span>
-        </div>
-        <span class="ts-chev">▶</span>
-      </div>
-      <div class="ts-body">
-        <div class="ts-inner">
-          <div class="ctrl">
-            <div class="ctrl-row"><span class="clabel">ACTIVO</span><div class="tog on" id="togThick" onclick="this.classList.toggle('on')"></div></div>
-          </div>
-          <div class="ctrl">
-            <div class="ctrl-row"><span class="clabel">RADIO (px)</span><span class="cval" id="thickV">1</span></div>
-            <input type="range" class="rng" id="thickR" min="1" max="5" value="1" style="--p:0%">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── TOOL 03: PALETA ── -->
-    <div class="ts" id="t3">
-      <div class="ts-hdr" onclick="toggleTS('t3')">
-        <div class="ts-num">03</div>
-        <div class="ts-meta">
-          <span class="ts-name">REDUCIR COLORES</span>
-          <span class="ts-desc">K-MEANS CLUSTERING · PALETA OPTIMIZADA</span>
-        </div>
-        <span class="ts-chev">▶</span>
-      </div>
-      <div class="ts-body">
-        <div class="ts-inner">
-          <div class="ctrl">
-            <div class="ctrl-row"><span class="clabel">ACTIVO</span><div class="tog" id="togPal" onclick="this.classList.toggle('on')"></div></div>
-          </div>
-          <div class="ctrl">
-            <div class="ctrl-row"><span class="clabel">N° COLORES</span><span class="cval" id="palV">4</span></div>
-            <input type="range" class="rng" id="palR" min="2" max="8" value="4" style="--p:33%">
-          </div>
-          <div class="ctrl">
-            <div class="sep">
-              <div class="sep-line"></div><div class="sep-txt">PALETA DETECTADA</div><div class="sep-line"></div>
-            </div>
-            <div class="pal-strip" id="palStrip">
-              <span style="font-family:var(--mono);font-size:7px;color:var(--txt2);">— procesá para ver —</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── TOOL 04: VINTAGE ── -->
-    <div class="ts" id="t4">
-      <div class="ts-hdr" onclick="toggleTS('t4')">
-        <div class="ts-num">04</div>
-        <div class="ts-meta">
-          <span class="ts-name">EFECTO VINTAGE</span>
-          <span class="ts-desc">FADE · SEPIA · PALETA RETRO</span>
-        </div>
-        <span class="ts-chev">▶</span>
-      </div>
-      <div class="ts-body">
-        <div class="ts-inner">
-          <div class="ctrl">
-            <div class="ctrl-row"><span class="clabel">VINTAGE FADE</span><div class="tog" id="togVint" onclick="this.classList.toggle('on')"></div></div>
-          </div>
-          <div class="ctrl">
-            <div class="ctrl-row"><span class="clabel">INTENSIDAD</span><span class="cval" id="vintV">50%</span></div>
-            <input type="range" class="rng" id="vintR" min="10" max="100" value="50" style="--p:44%">
-          </div>
-          <div class="ctrl">
-            <div class="ctrl-row"><span class="clabel">TONO CÁLIDO</span><div class="tog on" id="togWarm" onclick="this.classList.toggle('on')"></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div><!-- /tool-acc -->
-
-  <div class="sdiv"></div>
-
-  <!-- PROCESS -->
-  <button class="btn-process" id="btnProcess" disabled>
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-    PROCESAR
-  </button>
-  <div class="prog" id="prog"><div class="prog-bar" id="progBar"></div></div>
-  <div class="status-ln" id="statusLn"></div>
-
-  <!-- DOWNLOADS -->
-  <div class="dl-wrap">
-    <div class="dl-lbl">EXPORTAR</div>
-    <div class="dl-row">
-      <button class="btn-dl png" id="btnPng" disabled>↓ PNG</button>
-      <button class="btn-dl svg" id="btnSvg" disabled>↓ SVG</button>
-    </div>
-  </div>
-
-</aside>
-
-<!-- ─────────────── MAIN ─────────────── -->
-<div class="main">
-
-  <!-- SOL DE MAYO -->
-  <svg class="sol-bg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="100" cy="100" r="32" fill="#74ACDF"/>
-    <g stroke="#74ACDF" stroke-width="5" stroke-linecap="round">
-      <line x1="100" y1="18" x2="100" y2="46"/><line x1="100" y1="154" x2="100" y2="182"/>
-      <line x1="18" y1="100" x2="46" y2="100"/><line x1="154" y1="100" x2="182" y2="100"/>
-      <line x1="42" y1="42" x2="62" y2="62"/><line x1="138" y1="138" x2="158" y2="158"/>
-      <line x1="158" y1="42" x2="138" y2="62"/><line x1="62" y1="138" x2="42" y2="158"/>
-      <line x1="70" y1="26" x2="76" y2="52"/><line x1="124" y1="148" x2="130" y2="174"/>
-      <line x1="26" y1="70" x2="52" y2="76"/><line x1="148" y1="124" x2="174" y2="130"/>
-      <line x1="26" y1="130" x2="52" y2="124"/><line x1="148" y1="76" x2="174" y2="70"/>
-      <line x1="70" y1="174" x2="76" y2="148"/><line x1="124" y1="52" x2="130" y2="26"/>
-    </g>
-    <circle cx="100" cy="100" r="18" fill="#74ACDF"/>
-    <circle cx="100" cy="100" r="9" fill="#D99A28"/>
-    <circle cx="94" cy="97" r="1.8" fill="#fff"/>
-    <circle cx="106" cy="97" r="1.8" fill="#fff"/>
-    <path d="M92 103 Q100 108 108 103" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-  </svg>
-
-  <!-- BA VIEWER -->
-  <div class="ba-wrap">
-    <div class="ba-viewer" id="baViewer">
-      <canvas class="ba-cv" id="cvBefore"></canvas>
-      <canvas class="ba-cv" id="cvAfter"></canvas>
-      <div class="ba-line" id="baLine"></div>
-      <div class="ba-knob" id="baKnob">⇔</div>
-      <div class="ba-lbl-row">
-        <span class="ba-lbl">← ORIGINAL</span>
-        <span class="ba-lbl">PROCESADO →</span>
-      </div>
-      <!-- empty -->
-      <div class="ba-empty" id="baEmpty">
-        <div class="ba-empty-ico">👕</div>
-        <div class="ba-empty-t">SIN IMAGEN</div>
-        <div class="ba-empty-s">subí un diseño para comenzar</div>
-      </div>
-      <!-- processing -->
-      <div class="proc-ov" id="procOv">
-        <div class="scan-line"></div>
-        <div class="proc-spin"></div>
-        <div class="proc-t" id="procT">PROCESANDO</div>
-        <div class="proc-s" id="procS">preparando...</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SHIRTS -->
-  <div class="shirts-bar">
-    <div class="shirt-cell">
-      <canvas class="shirt-cv" id="shirtW" width="124" height="132"></canvas>
-      <span class="shirt-lbl">BLANCA</span>
-    </div>
-    <div class="shirt-cell">
-      <canvas class="shirt-cv" id="shirtB" width="124" height="132"></canvas>
-      <span class="shirt-lbl">NEGRA</span>
-    </div>
-    <div class="shirt-cell">
-      <canvas class="shirt-cv" id="shirtG" width="124" height="132"></canvas>
-      <span class="shirt-lbl">GRIS OXFORD</span>
-    </div>
-  </div>
-
-  <!-- COORD BAR -->
-  <div class="coord-bar">
-    <div class="coord-item">DIM <span id="cDim">—</span></div>
-    <div class="coord-item">MODO <span id="cMode">AUTO</span></div>
-    <div class="coord-item">TOLERANCIA <span id="cTol">30</span></div>
-    <div class="coord-item">COLORES <span id="cColors">—</span></div>
-    <div class="coord-item st" id="cSt">ESTADO <span>SIN IMAGEN</span></div>
-  </div>
-
-</div><!-- /main -->
-</div><!-- /app -->
-
-<!-- AD BOT -->
-<div class="ad bot">
-  <div class="ad-pip"></div>
-  <span class="ad-txt">Espacio Publicitario · 728×90</span>
-  <div class="ad-pip"></div>
 </div>
 
+<!-- AD BOTTOM -->
+<div class="ad bot"><span>Espacio publicitario · 728×90</span></div>
+
+<!-- HIDDEN WORK CANVAS -->
 <canvas id="cvWork" style="display:none;"></canvas>
 
-<!-- ═══════════════════════════ SCRIPT ═══════════════════════════ -->
 <script>
 'use strict';
 
-/* ══════════════════════════════════════════════════
-   CONFIG — cambiá API_BASE a tu servidor Node.js
-══════════════════════════════════════════════════ */
-const API_BASE = 'http://localhost:3000'; // ← tu Express server
-const USE_API  = false; // se activa si el server responde al health-check
-
-/* ══════════════════════════════════════════════════
+/* ═══════════════════════════════════════
    STATE
-══════════════════════════════════════════════════ */
+═══════════════════════════════════════ */
 const S = {
   img: null, file: null,
-  bgMode: 'auto', pickColor: [230,0,38],
-  tol: 30, smooth: true, aa: true,
-  thick: true, thickR: 1,
-  pal: false, colors: 4,
-  vint: false, vintAmt: 50, warm: true,
-  processedData: null, svgData: null,
-  hasResult: false, picking: false,
-  useAPI: false,
+  mode: 'auto',
+  tol: 30,
+  pickColor: [230, 0, 38],
+  smooth: true,
+  thick: true,
+  picking: false,
+  resultData: null,
+  busy: false,
 };
 
-/* ══════════════════════════════════════════════════
-   UTILS
-══════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════
+   HELPERS
+═══════════════════════════════════════ */
 const $ = id => document.getElementById(id);
-const sleep = ms => new Promise(r=>setTimeout(r,ms));
-const clamp = v => Math.max(0,Math.min(255,v));
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const clamp = v => Math.max(0, Math.min(255, v));
 
-/* ══════════════════════════════════════════════════
-   API HEALTH CHECK
-══════════════════════════════════════════════════ */
-async function checkAPI() {
-  try {
-    const r = await fetch(`${API_BASE}/health`, {signal: AbortSignal.timeout(2000)});
-    if(r.ok) {
-      S.useAPI = true;
-      $('apiDot').className = 'api-dot on';
-      $('apiTxt').textContent = 'API OK';
-      $('beNote').classList.add('show');
-    }
-  } catch {
-    $('apiDot').className = 'api-dot';
-    $('apiTxt').textContent = 'API — LOCAL';
-  }
+function scaleToFit(img, max) {
+  const sc = Math.min(1, max / Math.max(img.width, img.height));
+  return { w: Math.round(img.width * sc), h: Math.round(img.height * sc) };
 }
-checkAPI();
 
-/* ══════════════════════════════════════════════════
+/* ═══════════════════════════════════════
    UPLOAD
-══════════════════════════════════════════════════ */
-const uz = $('uploadZone');
+═══════════════════════════════════════ */
+const uz = $('uz');
 uz.addEventListener('click', () => $('fileInput').click());
-$('fileInput').addEventListener('change', e => e.target.files[0] && loadFile(e.target.files[0]));
-uz.addEventListener('dragover',  e => { e.preventDefault(); uz.classList.add('drag-over'); });
-uz.addEventListener('dragleave', () => uz.classList.remove('drag-over'));
+$('fileInput').addEventListener('change', e => e.target.files[0] && load(e.target.files[0]));
+uz.addEventListener('dragover',  e => { e.preventDefault(); uz.classList.add('over'); });
+uz.addEventListener('dragleave', ()  => uz.classList.remove('over'));
 uz.addEventListener('drop', e => {
-  e.preventDefault(); uz.classList.remove('drag-over');
+  e.preventDefault(); uz.classList.remove('over');
   const f = e.dataTransfer.files[0];
-  if(f && f.type.startsWith('image/')) loadFile(f);
+  if (f && f.type.startsWith('image/')) load(f);
 });
 
-function loadFile(file) {
+function load(file) {
   S.file = file;
   const url = URL.createObjectURL(file);
   const img = new Image();
   img.onload = () => {
     S.img = img;
     $('thumbImg').src = url;
-    $('thumbMeta').textContent = `${img.width} × ${img.height}px  ·  ${(file.size/1024).toFixed(1)} KB`;
-    $('thumbBox').style.display = 'block';
-    $('uploadPrompt').style.display = 'none';
-    uz.classList.add('has-file');
+    $('thumbMeta').textContent = `${img.width} × ${img.height} px  ·  ${(file.size / 1024).toFixed(0)} KB`;
+    $('thumbWrap').style.display = 'block';
+    $('uplPrompt').style.display = 'none';
+    uz.classList.add('loaded');
     $('baEmpty').style.display = 'none';
     $('btnProcess').disabled = false;
-    $('cDim').textContent = `${img.width} × ${img.height}`;
-    setState('IMAGEN LISTA', 'ok');
+    $('tbDim').textContent = `${img.width} × ${img.height}`;
     drawBefore(img);
-    renderShirts(null);
-    setStatus('Imagen cargada · presioná PROCESAR', 'info');
+    setStatus('Imagen cargada · presioná PROCESAR', 'run');
+    setState('IMAGEN LISTA', 'run');
   };
   img.src = url;
 }
 
 function drawBefore(img) {
-  const {w,h} = scaleImg(img, 900);
-  const cvB = $('cvBefore'), cvA = $('cvAfter');
-  cvB.width=w; cvB.height=h;
-  cvB.getContext('2d').drawImage(img,0,0,w,h);
-  cvA.width=w; cvA.height=h;
-  cvA.getContext('2d').clearRect(0,0,w,h);
-  cvA.style.clipPath='inset(0 50% 0 0)';
-  $('baLine').style.left='50%';
-  $('baKnob').style.left='50%';
+  const cv = $('cvBefore'), ctx = cv.getContext('2d');
+  const { w, h } = scaleToFit(img, 1200);
+  cv.width = w; cv.height = h;
+  ctx.drawImage(img, 0, 0, w, h);
+
+  const cvA = $('cvAfter');
+  cvA.width = w; cvA.height = h;
+  cvA.getContext('2d').clearRect(0, 0, w, h);
+  cvA.style.clipPath = 'inset(0 50% 0 0)';
+  $('baDiv').style.left = '50%';
+  $('baKnob').style.left = '50%';
 }
 
-function scaleImg(img, max) {
-  const sc = Math.min(1, max/Math.max(img.width,img.height));
-  return {w:Math.round(img.width*sc), h:Math.round(img.height*sc)};
-}
-
-/* ══════════════════════════════════════════════════
-   ACCORDION
-══════════════════════════════════════════════════ */
-function toggleTS(id) {
-  const el = $(id);
-  const wasOpen = el.classList.contains('open');
-  document.querySelectorAll('.ts').forEach(t=>t.classList.remove('open'));
-  if(!wasOpen) el.classList.add('open');
-}
-
-/* ══════════════════════════════════════════════════
+/* ═══════════════════════════════════════
    MODE
-══════════════════════════════════════════════════ */
-function setMode(btn, toolId) {
-  document.querySelectorAll(`#${toolId} .m-btn`).forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  S.bgMode = btn.dataset.mode;
-  $('cMode').textContent = S.bgMode.toUpperCase();
-  const on = S.bgMode === 'color';
-  $('cpickRow').classList.toggle('on', on);
-  if(on) startPick();
+═══════════════════════════════════════ */
+function setMode(btn) {
+  document.querySelectorAll('.mtab').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  S.mode = btn.dataset.mode;
+  $('tbMode').textContent = S.mode.toUpperCase();
+  const isColor = S.mode === 'color';
+  $('cpick').classList.toggle('on', isColor);
+  if (isColor) startPick();
 }
 
 function startPick() {
   S.picking = true;
   $('baViewer').style.cursor = 'crosshair';
-  setStatus('Click en la imagen original para muestrear color de fondo', 'info');
+  setStatus('Click en la imagen para elegir el color de fondo', 'run');
 }
 
-$('baViewer').addEventListener('click', e => {
-  if(!S.picking || !S.img) return;
-  const r = $('baViewer').getBoundingClientRect();
-  const px = (e.clientX-r.left)/r.width;
-  const py = (e.clientY-r.top)/r.height;
+/* ═══════════════════════════════════════
+   BA SLIDER
+═══════════════════════════════════════ */
+let drag = false;
+const viewer = $('baViewer');
+viewer.addEventListener('mousedown',  e => { if (!S.picking) { drag = true; moveBA(e.clientX); } });
+viewer.addEventListener('touchstart', e => { if (!S.picking) { e.preventDefault(); drag = true; moveBA(e.touches[0].clientX); } }, { passive: false });
+document.addEventListener('mousemove', e => { if (drag) moveBA(e.clientX); });
+document.addEventListener('touchmove', e => { if (drag) moveBA(e.touches[0].clientX); }, { passive: false });
+document.addEventListener('mouseup',   () => drag = false);
+document.addEventListener('touchend',  () => drag = false);
+
+function moveBA(cx) {
+  const r = viewer.getBoundingClientRect();
+  const p = Math.max(0, Math.min(1, (cx - r.left) / r.width));
+  const pR = ((1 - p) * 100).toFixed(1);
+  const pL = (p * 100).toFixed(1);
+  $('cvAfter').style.clipPath = `inset(0 ${pR}% 0 0)`;
+  $('baDiv').style.left = pL + '%';
+  $('baKnob').style.left = pL + '%';
+}
+
+// Click to pick color from canvas
+viewer.addEventListener('click', e => {
+  if (!S.picking || !S.img) return;
+  const r = viewer.getBoundingClientRect();
+  const px = (e.clientX - r.left) / r.width;
+  const py = (e.clientY - r.top)  / r.height;
   const cv = $('cvBefore');
-  const ix = Math.round(px*cv.width), iy = Math.round(py*cv.height);
-  const d  = cv.getContext('2d').getImageData(Math.max(0,ix),Math.max(0,iy),1,1).data;
-  S.pickColor = [d[0],d[1],d[2]];
-  $('cpickSwatch').style.background = `rgb(${d[0]},${d[1]},${d[2]})`;
+  const d  = cv.getContext('2d').getImageData(
+    Math.round(px * cv.width),
+    Math.round(py * cv.height), 1, 1
+  ).data;
+  S.pickColor = [d[0], d[1], d[2]];
+  $('cpickSw').style.background = `rgb(${d[0]},${d[1]},${d[2]})`;
   S.picking = false;
-  $('baViewer').style.cursor = 'col-resize';
-  setStatus(`Color: rgb(${d[0]},${d[1]},${d[2]}) — listo para procesar`, 'ok');
+  viewer.style.cursor = 'col-resize';
+  setStatus(`Color seleccionado rgb(${d[0]},${d[1]},${d[2]}) · listo`, 'ok');
 });
 
-/* ══════════════════════════════════════════════════
-   RANGE BINDINGS
-══════════════════════════════════════════════════ */
-function bindRng(id,valId,key,fmt){
-  const el=$(id);
-  el.addEventListener('input',()=>{
-    const v=+el.value; S[key]=v;
-    $(valId).textContent=fmt?fmt(v):v;
-    const min=+el.min,max=+el.max;
-    el.style.setProperty('--p',((v-min)/(max-min)*100).toFixed(1)+'%');
-  });
-}
-bindRng('tolR','tolV','tol'); bindRng('thickR','thickV','thickR');
-bindRng('palR','palV','colors'); bindRng('vintR','vintV','vintAmt',v=>v+'%');
+/* ═══════════════════════════════════════
+   RANGE
+═══════════════════════════════════════ */
+$('tolR').addEventListener('input', function() {
+  const v = +this.value;
+  S.tol = v;
+  $('tolVal').textContent = v;
+  $('tbTol').textContent  = v;
+  const pct = ((v - 5) / 85 * 100).toFixed(0);
+  this.style.setProperty('--p', pct + '%');
+});
 
-/* ══════════════════════════════════════════════════
-   BEFORE / AFTER SLIDER
-══════════════════════════════════════════════════ */
-let dragging = false;
-const viewer = $('baViewer');
-viewer.addEventListener('mousedown',  e => { if(!S.picking){dragging=true;moveBA(e.clientX);} });
-viewer.addEventListener('touchstart', e => { if(!S.picking){e.preventDefault();dragging=true;moveBA(e.touches[0].clientX);} },{passive:false});
-document.addEventListener('mousemove', e => { if(dragging)moveBA(e.clientX); });
-document.addEventListener('touchmove', e => { if(dragging)moveBA(e.touches[0].clientX); },{passive:false});
-document.addEventListener('mouseup',   () => dragging=false);
-document.addEventListener('touchend',  () => dragging=false);
-function moveBA(cx) {
-  const r=viewer.getBoundingClientRect();
-  const pct=Math.max(0,Math.min(1,(cx-r.left)/r.width));
-  const pR=((1-pct)*100).toFixed(1), pL=(pct*100).toFixed(1);
-  $('cvAfter').style.clipPath=`inset(0 ${pR}% 0 0)`;
-  $('baLine').style.left=pL+'%';
-  $('baKnob').style.left=pL+'%';
-}
-
-/* ══════════════════════════════════════════════════
+/* ═══════════════════════════════════════
    PROCESS
-══════════════════════════════════════════════════ */
+═══════════════════════════════════════ */
 $('btnProcess').addEventListener('click', processImage);
 
 async function processImage() {
-  if(!S.img) return;
+  if (!S.img || S.busy) return;
+  S.busy = true;
   $('btnProcess').disabled = true;
+  $('btnDl').disabled = true;
   $('procOv').classList.add('on');
   $('prog').style.display = 'block';
-  setAPIStatus('busy');
-  setState('PROCESANDO', 'busy');
+  setState('PROCESANDO', 'run');
 
-  // Leer toggles actuales
-  const cfg = {
-    bgMode: S.bgMode, tol: S.tol, pickColor: S.pickColor,
-    smooth: $('togSmooth').classList.contains('on'),
-    aa:     $('togAA').classList.contains('on'),
-    thick:  $('togThick').classList.contains('on'),
-    thickR: S.thickR,
-    pal:    $('togPal').classList.contains('on'),
-    colors: S.colors,
-    vint:   $('togVint').classList.contains('on'),
-    vintAmt:S.vintAmt,
-    warm:   $('togWarm').classList.contains('on'),
-  };
+  const img = S.img;
+  const { w, h } = scaleToFit(img, 1200);
+  const cvW = $('cvWork');
+  cvW.width = w; cvW.height = h;
+  const ctx = cvW.getContext('2d', { willReadFrequently: true });
+  ctx.drawImage(img, 0, 0, w, h);
 
-  try {
-    let resultPng, resultSvg, palette;
+  let id = ctx.getImageData(0, 0, w, h);
 
-    if(S.useAPI) {
-      ({resultPng, resultSvg, palette} = await processViaAPI(cfg));
-    } else {
-      ({resultPng, resultSvg, palette} = await processLocal(cfg));
-    }
+  setProc('REMOVIENDO FONDO', 'analizando imagen...'); setP(10); await sleep(20);
+  id = removeBG(id, S.mode, S.tol, S.pickColor);
 
-    // Render result
-    const cv = $('cvAfter');
-    const img = new Image();
-    img.onload = () => {
-      cv.width = img.width; cv.height = img.height;
-      cv.getContext('2d').drawImage(img,0,0);
-      const cvB = $('cvBefore');
-      if(cvB.width !== img.width){ cvB.width=img.width; cvB.height=img.height; cvB.getContext('2d').drawImage(S.img,0,0,img.width,img.height); }
-    };
-    img.src = resultPng;
-
-    S.processedData = resultPng;
-    S.svgData = resultSvg;
-    S.hasResult = true;
-    if(palette) renderPalette(palette); else clearPalette();
-    $('cColors').textContent = palette ? palette.length : '—';
-
-    // Re-render shirts
-    const tmpImg = new Image();
-    tmpImg.onload = () => renderShirts(tmpImg);
-    tmpImg.src = resultPng;
-
-    $('btnPng').disabled = false;
-    $('btnSvg').disabled = false;
-    setStatus('✓ Procesado con éxito', 'ok');
-    setState('LISTO', 'ok');
-    setAPIStatus('on');
-
-    // Reset slider
-    $('cvAfter').style.clipPath='inset(0 50% 0 0)';
-    $('baLine').style.left='50%';
-    $('baKnob').style.left='50%';
-
-  } catch(err) {
-    setStatus('Error: '+err.message, 'err');
-    setState('ERROR', '');
-    setAPIStatus('err');
-    console.error(err);
+  if ($('togSmooth').classList.contains('on')) {
+    setProc('SUAVIZANDO', 'refinando bordes...'); setP(45); await sleep(20);
+    id = smoothAlpha(id);
+    id = smoothAlpha(id); // 2da pasada
   }
+
+  if ($('togThick').classList.contains('on')) {
+    setProc('ENGROSANDO', 'dilatación morfológica...'); setP(70); await sleep(20);
+    id = dilate(id, 1);
+  }
+
+  setProc('RENDERIZANDO', 'generando PNG transparente...'); setP(90); await sleep(20);
+
+  // Draw result
+  const cvA = $('cvAfter');
+  cvA.width = w; cvA.height = h;
+  cvA.getContext('2d').putImageData(id, 0, 0);
+  const cvB = $('cvBefore');
+  cvB.width = w; cvB.height = h;
+  cvB.getContext('2d').drawImage(img, 0, 0, w, h);
+
+  cvA.style.clipPath = 'inset(0 50% 0 0)';
+  $('baDiv').style.left = '50%';
+  $('baKnob').style.left = '50%';
+
+  // Save result for download
+  ctx.putImageData(id, 0, 0);
+  S.resultData = cvW.toDataURL('image/png');
+
+  setP(100);
+  await sleep(200);
 
   $('procOv').classList.remove('on');
-  $('prog').style.display='none';
-  $('btnProcess').disabled=false;
+  $('prog').style.display = 'none';
+  $('btnProcess').disabled = false;
+  $('btnDl').disabled = false;
+  S.busy = false;
+  setState('LISTO', 'ok');
+  setStatus(`✓ Procesado · ${w}×${h}px · PNG transparente listo`, 'ok');
 }
 
-/* ══════════════════════════════════════════════════
-   PROCESS VIA API (Node.js Express + Sharp)
-══════════════════════════════════════════════════ */
-async function processViaAPI(cfg) {
-  const fd = new FormData();
-  fd.append('image', S.file);
-  fd.append('config', JSON.stringify(cfg));
-
-  setProcStatus('SUBIENDO', 'enviando al servidor...');
-  setProgress(15);
-
-  const r = await fetch(`${API_BASE}/api/process`, {method:'POST', body:fd});
-  if(!r.ok) throw new Error(`Server ${r.status}: ${await r.text()}`);
-
-  setProgress(60);
-  setProcStatus('PROCESANDO', 'sharp + potrace...');
-
-  const json = await r.json();
-  setProgress(95);
-
-  return {
-    resultPng: `${API_BASE}${json.png}`,
-    resultSvg: `${API_BASE}${json.svg}`,
-    palette:   json.palette || null,
-  };
-}
-
-/* ══════════════════════════════════════════════════
-   PROCESS LOCAL (fallback sin servidor)
-══════════════════════════════════════════════════ */
-async function processLocal(cfg) {
-  const img = S.img;
-  const {w,h} = scaleImg(img,900);
-  const cvW = $('cvWork');
-  cvW.width=w; cvW.height=h;
-  const ctx = cvW.getContext('2d',{willReadFrequently:true});
-  ctx.drawImage(img,0,0,w,h);
-  let id = ctx.getImageData(0,0,w,h);
-
-  setProcStatus('REMOVIENDO FONDO','analizando imagen...'); setProgress(10); await sleep(20);
-  id = removeBG(id, cfg.bgMode, cfg.tol, cfg.pickColor);
-
-  if(cfg.smooth){ setProcStatus('SUAVIZANDO','refinando bordes...'); setProgress(30); await sleep(20); id=smoothEdges(id); }
-  if(cfg.aa){ setProgress(42); await sleep(15); id=smoothEdges(id); }
-  if(cfg.thick){ setProcStatus('ENGROSANDO','dilatación morfológica...'); setProgress(55); await sleep(20); id=dilate(id,cfg.thickR); }
-
-  let palette = null;
-  if(cfg.pal){ setProcStatus('PALETA','k-means clustering...'); setProgress(70); await sleep(20); palette=kMeans(id,cfg.colors); id=applyPal(id,palette); }
-  if(cfg.vint){ setProcStatus('VINTAGE','ajustando tonos...'); setProgress(82); await sleep(20); id=vintageFilter(id,cfg.vintAmt/100,cfg.warm); }
-
-  setProcStatus('RENDERIZANDO','generando output...'); setProgress(90); await sleep(20);
-
-  cvW.getContext('2d').putImageData(id,0,0);
-  const resultPng = cvW.toDataURL('image/png');
-
-  // Simple SVG (embedded PNG)
-  const outline = traceOutline(id);
-  const resultSvg = `data:image/svg+xml;base64,`+btoa(`<?xml version="1.0"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
-<defs><clipPath id="c"><path d="${outline}"/></clipPath></defs>
-<image href="${resultPng}" width="${w}" height="${h}" clip-path="url(#c)"/>
-</svg>`);
-
-  return {resultPng, resultSvg, palette};
-}
-
-/* ══════════════════════════════════════════════════
-   ALGORITMOS
-══════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════
+   ALGORITHMS
+═══════════════════════════════════════ */
 function removeBG(id, mode, tol, pick) {
-  const {data,width,height}=id;
-  if(mode==='white'){
-    for(let i=0;i<data.length;i+=4){
-      const lum=0.299*data[i]+0.587*data[i+1]+0.114*data[i+2];
-      if(lum>240) data[i+3]=0;
-      else if(lum>210){ const t=(lum-210)/30; data[i+3]=Math.round(data[i+3]*(1-t)); }
+  const { data, width, height } = id;
+
+  if (mode === 'white') {
+    for (let i = 0; i < data.length; i += 4) {
+      const lum = 0.299 * data[i] + 0.587 * data[i+1] + 0.114 * data[i+2];
+      if (lum > 238)       data[i+3] = 0;
+      else if (lum > 205)  data[i+3] = Math.round(data[i+3] * (1 - (lum - 205) / 33));
     }
     return id;
   }
-  if(mode==='black'){
-    for(let i=0;i<data.length;i+=4){
-      const lum=0.299*data[i]+0.587*data[i+1]+0.114*data[i+2];
-      if(lum<15) data[i+3]=0;
-      else if(lum<40){ data[i+3]=Math.round(data[i+3]*((lum-15)/25)); }
+
+  if (mode === 'black') {
+    for (let i = 0; i < data.length; i += 4) {
+      const lum = 0.299 * data[i] + 0.587 * data[i+1] + 0.114 * data[i+2];
+      if (lum < 18)       data[i+3] = 0;
+      else if (lum < 45)  data[i+3] = Math.round(data[i+3] * ((lum - 18) / 27));
     }
     return id;
   }
-  const bgCol = mode==='color' ? pick : sampleBGColor(data,width,height);
-  floodFill(data,width,height,bgCol,tol);
+
+  // AUTO or COLOR: flood fill from all edges
+  const bgCol = mode === 'color' ? pick : sampleBG(data, width, height);
+  floodFill(data, width, height, bgCol, tol);
   return id;
 }
 
-function sampleBGColor(data,width,height){
-  const pts=[[0,0],[width-1,0],[0,height-1],[width-1,height-1],
-             [width>>1,0],[0,height>>1],[width-1,height>>1],[width>>1,height-1]];
+function sampleBG(data, width, height) {
+  const pts = [
+    [0,0],[width-1,0],[0,height-1],[width-1,height-1],
+    [width>>1,0],[0,height>>1],[width-1,height>>1],[width>>1,height-1],
+  ];
   let r=0,g=0,b=0;
-  for(const [x,y] of pts){const i=(y*width+x)*4;r+=data[i];g+=data[i+1];b+=data[i+2];}
-  return [r/pts.length,g/pts.length,b/pts.length];
+  for (const [x,y] of pts) {
+    const i = (y * width + x) * 4;
+    r += data[i]; g += data[i+1]; b += data[i+2];
+  }
+  return [r / pts.length, g / pts.length, b / pts.length];
 }
 
-function floodFill(data,width,height,bgCol,tol){
-  const vis=new Uint8Array(width*height);
-  const stack=[];
-  const push=(x,y)=>{const i=y*width+x;if(x>=0&&x<width&&y>=0&&y<height&&!vis[i]){vis[i]=1;stack.push(x,y);}};
-  for(let x=0;x<width;x+=16){push(x,0);push(x,height-1);}
-  for(let y=0;y<height;y+=16){push(0,y);push(width-1,y);}
-  while(stack.length){
-    const y=stack.pop(),x=stack.pop();
-    const i=(y*width+x)*4;
-    const diff=Math.abs(data[i]-bgCol[0])+Math.abs(data[i+1]-bgCol[1])+Math.abs(data[i+2]-bgCol[2]);
-    if(data[i+3]<20||diff<=tol){
-      data[i+3]=0;
-      push(x-1,y);push(x+1,y);push(x,y-1);push(x,y+1);
+function floodFill(data, width, height, bgCol, tol) {
+  const vis   = new Uint8Array(width * height);
+  const stack = [];
+  const push  = (x, y) => {
+    const i = y * width + x;
+    if (x >= 0 && x < width && y >= 0 && y < height && !vis[i]) {
+      vis[i] = 1; stack.push(x, y);
+    }
+  };
+  for (let x = 0; x < width;  x += 10) { push(x, 0); push(x, height-1); }
+  for (let y = 0; y < height; y += 10) { push(0, y); push(width-1, y);  }
+
+  while (stack.length) {
+    const y = stack.pop(), x = stack.pop();
+    const i = (y * width + x) * 4;
+    const diff = Math.abs(data[i]-bgCol[0])
+               + Math.abs(data[i+1]-bgCol[1])
+               + Math.abs(data[i+2]-bgCol[2]);
+    if (data[i+3] < 20 || diff <= tol) {
+      data[i+3] = 0;
+      push(x-1,y); push(x+1,y); push(x,y-1); push(x,y+1);
     }
   }
 }
 
-function smoothEdges(id){
-  const {data,width,height}=id;
-  const a=new Float32Array(width*height);
-  for(let i=0;i<data.length;i+=4) a[i/4]=data[i+3]/255;
-  const b=new Float32Array(width*height);
-  for(let y=1;y<height-1;y++) for(let x=1;x<width-1;x++){
-    let s=0;
-    for(let dy=-1;dy<=1;dy++) for(let dx=-1;dx<=1;dx++) s+=a[(y+dy)*width+(x+dx)];
-    b[y*width+x]=s/9;
-  }
-  for(let x=0;x<width;x++){b[x]=a[x];b[(height-1)*width+x]=a[(height-1)*width+x];}
-  for(let y=0;y<height;y++){b[y*width]=a[y*width];b[y*width+width-1]=a[y*width+width-1];}
-  for(let i=0;i<data.length;i+=4) data[i+3]=b[i/4]>.5?255:0;
-  return id;
-}
+function smoothAlpha(id) {
+  const { data, width, height } = id;
+  const a = new Float32Array(width * height);
+  for (let i = 0; i < data.length; i += 4) a[i/4] = data[i+3] / 255;
 
-function dilate(id,r){
-  const {data,width,height}=id;
-  const orig=new Uint8Array(data);
-  for(let y=r;y<height-r;y++) for(let x=r;x<width-r;x++){
-    const i=(y*width+x)*4;
-    if(orig[i+3]!==0) continue;
-    outer: for(let dy=-r;dy<=r;dy++) for(let dx=-r;dx<=r;dx++){
-      const ni=((y+dy)*width+(x+dx))*4;
-      if(orig[ni+3]>128){data[i]=orig[ni];data[i+1]=orig[ni+1];data[i+2]=orig[ni+2];data[i+3]=255;break outer;}
+  const b = new Float32Array(width * height);
+  for (let y = 1; y < height-1; y++) {
+    for (let x = 1; x < width-1; x++) {
+      let s = 0;
+      for (let dy = -1; dy <= 1; dy++)
+        for (let dx = -1; dx <= 1; dx++)
+          s += a[(y+dy)*width+(x+dx)];
+      b[y*width+x] = s / 9;
     }
   }
+  for (let x = 0; x < width; x++) { b[x]=a[x]; b[(height-1)*width+x]=a[(height-1)*width+x]; }
+  for (let y = 0; y < height; y++) { b[y*width]=a[y*width]; b[y*width+width-1]=a[y*width+width-1]; }
+  for (let i = 0; i < data.length; i += 4) data[i+3] = b[i/4] > 0.5 ? 255 : 0;
   return id;
 }
 
-function kMeans(id,k){
-  const {data}=id;
-  const samples=[];
-  for(let i=0;i<data.length;i+=16) if(data[i+3]>128) samples.push([data[i],data[i+1],data[i+2]]);
-  if(samples.length<k) return samples;
-  let cents=[samples[Math.floor(Math.random()*samples.length)]];
-  for(let c=1;c<k;c++){
-    const ds=samples.map(s=>Math.min(...cents.map(ce=>cdsq(s,ce))));
-    const tot=ds.reduce((a,b)=>a+b,0);
-    let rv=Math.random()*tot,idx=0;
-    for(let i=0;i<ds.length;i++){rv-=ds[i];if(rv<=0){idx=i;break;}}
-    cents.push(samples[idx]);
-  }
-  for(let it=0;it<10;it++){
-    const cl=Array.from({length:k},()=>({s:[0,0,0],n:0}));
-    for(const s of samples){
-      let b=0,bd=Infinity;
-      for(let c=0;c<k;c++){const d=cdsq(s,cents[c]);if(d<bd){bd=d;b=c;}}
-      cl[b].s[0]+=s[0];cl[b].s[1]+=s[1];cl[b].s[2]+=s[2];cl[b].n++;
-    }
-    cents=cl.map((c,i)=>c.n>0?[c.s[0]/c.n,c.s[1]/c.n,c.s[2]/c.n]:cents[i]);
-  }
-  return cents;
-}
-function applyPal(id,pal){
-  const {data}=id;
-  for(let i=0;i<data.length;i+=4){
-    if(data[i+3]<128){data[i+3]=0;continue;}
-    let b=0,bd=Infinity;
-    const px=[data[i],data[i+1],data[i+2]];
-    for(let c=0;c<pal.length;c++){const d=cdsq(px,pal[c]);if(d<bd){bd=d;b=c;}}
-    data[i]=Math.round(pal[b][0]);data[i+1]=Math.round(pal[b][1]);data[i+2]=Math.round(pal[b][2]);data[i+3]=255;
-  }
-  return id;
-}
-function cdsq(a,b){return(a[0]-b[0])**2+(a[1]-b[1])**2+(a[2]-b[2])**2;}
-
-function vintageFilter(id,amt,warm){
-  const {data}=id;
-  for(let i=0;i<data.length;i+=4){
-    if(data[i+3]===0) continue;
-    const lum=0.299*data[i]+0.587*data[i+1]+0.114*data[i+2];
-    if(warm){
-      data[i]=clamp(Math.round(data[i]*(1-amt)+lum*amt+12*amt));
-      data[i+1]=clamp(Math.round(data[i+1]*(1-amt)+lum*amt+2*amt));
-      data[i+2]=clamp(Math.round(data[i+2]*(1-amt)+lum*amt-18*amt));
-    } else {
-      data[i]=clamp(Math.round(data[i]*(1-amt)+lum*amt));
-      data[i+1]=clamp(Math.round(data[i+1]*(1-amt)+lum*amt));
-      data[i+2]=clamp(Math.round(data[i+2]*(1-amt)+lum*amt));
+function dilate(id, r) {
+  const { data, width, height } = id;
+  const orig = new Uint8Array(data);
+  for (let y = r; y < height-r; y++) {
+    for (let x = r; x < width-r; x++) {
+      const i = (y*width+x)*4;
+      if (orig[i+3] !== 0) continue;
+      outer: for (let dy = -r; dy <= r; dy++) {
+        for (let dx = -r; dx <= r; dx++) {
+          const ni = ((y+dy)*width+(x+dx))*4;
+          if (orig[ni+3] > 128) {
+            data[i]=orig[ni]; data[i+1]=orig[ni+1]; data[i+2]=orig[ni+2]; data[i+3]=255;
+            break outer;
+          }
+        }
+      }
     }
   }
   return id;
 }
 
-/* SVG outline */
-function traceOutline(id){
-  const {data,width,height}=id;
-  const g=new Uint8Array(width*height);
-  for(let i=0;i<data.length;i+=4) g[i/4]=data[i+3]>128?1:0;
-  const vis=new Uint8Array(width*height);
-  const paths=[];
-  const dx=[1,1,0,-1,-1,-1,0,1],dy=[0,1,1,1,0,-1,-1,-1];
-  for(let y=1;y<height-1;y++) for(let x=1;x<width-1;x++){
-    if(!g[y*width+x]||vis[y*width+x]) continue;
-    const nb=(x===0||!g[y*width+x-1])||(x===width-1||!g[y*width+x+1])||(y===0||!g[(y-1)*width+x])||(y===height-1||!g[(y+1)*width+x]);
-    if(!nb) continue;
-    const pts=[];let cx=x,cy=y,dir=7,st=0;
-    do{vis[cy*width+cx]=1;pts.push(cx,cy);
-      let f=false;
-      for(let i=0;i<8;i++){const nd=(dir+i)%8,nx=cx+dx[nd],ny=cy+dy[nd];
-        if(nx>=0&&nx<width&&ny>=0&&ny<height&&g[ny*width+nx]){dir=(nd+5)%8;cx=nx;cy=ny;f=true;break;}}
-      if(!f)break;st++;
-    } while((cx!==x||cy!==y)&&st<3000);
-    if(pts.length<8) continue;
-    const s=rdp(pts,1.5);
-    if(s.length<4) continue;
-    let d=`M${s[0]},${s[1]}`;
-    for(let i=2;i<s.length;i+=2)d+=`L${s[i]},${s[i+1]}`;
-    paths.push(d+'Z');
-  }
-  if(!paths.length){let mx=width,my=height,xx=0,xy=0;
-    for(let y=0;y<height;y++)for(let x=0;x<width;x++)if(g[y*width+x]){mx=Math.min(mx,x);my=Math.min(my,y);xx=Math.max(xx,x);xy=Math.max(xy,y);}
-    return `M${mx},${my}H${xx}V${xy}H${mx}Z`;}
-  return paths.join(' ');
-}
-function rdp(pts,eps){
-  const n=pts.length/2;if(n<=2)return pts;
-  const k=new Uint8Array(n);k[0]=k[n-1]=1;
-  function rec(s,e){if(e-s<2)return;
-    const x0=pts[s*2],y0=pts[s*2+1],x1=pts[e*2],y1=pts[e*2+1];
-    let md=0,mi=s;
-    for(let i=s+1;i<e;i++){const d=pld(pts[i*2],pts[i*2+1],x0,y0,x1,y1);if(d>md){md=d;mi=i;}}
-    if(md>eps){k[mi]=1;rec(s,mi);rec(mi,e);}
-  }
-  rec(0,n-1);
-  const r=[];for(let i=0;i<n;i++)if(k[i])r.push(pts[i*2],pts[i*2+1]);
-  return r;
-}
-function pld(px,py,x0,y0,x1,y1){
-  const dx=x1-x0,dy=y1-y0;
-  if(!dx&&!dy)return Math.hypot(px-x0,py-y0);
-  return Math.abs(dy*px-dx*py+x1*y0-y1*x0)/Math.hypot(dx,dy);
-}
-
-/* ══════════════════════════════════════════════════
-   SHIRT RENDER
-══════════════════════════════════════════════════ */
-function renderShirts(designImg) {
-  [['shirtW','#F2F2F2'],['shirtB','#141414'],['shirtG','#6A6A6A']].forEach(([id,col])=>{
-    const cv=$(id), ctx=cv.getContext('2d');
-    ctx.clearRect(0,0,cv.width,cv.height);
-    drawShirt(ctx,cv.width,cv.height,col,designImg);
-  });
-}
-function drawShirt(ctx,W,H,col,dImg){
-  const tw=W*.84,th=H*.86,tx=(W-tw)/2,ty=(H-th)/2+H*.02;
-  const sl=tx,sr=tx+tw,st=ty,sb=ty+th,sw=tw*.23,sh=th*.30;
-  ctx.save();
-  ctx.fillStyle=col;
-  ctx.strokeStyle=col==='#F2F2F2'?'#D8D8D8':'transparent';
-  ctx.lineWidth=1;
-  ctx.beginPath();
-  ctx.moveTo(sl+tw*.18,st);
-  ctx.lineTo(sl-sw*.2,st+sh*.2);ctx.lineTo(sl,st+sh);
-  ctx.lineTo(sl+sw*.9,st+sh*.6);ctx.lineTo(sl+sw*.9,sb);
-  ctx.lineTo(sr-sw*.9,sb);ctx.lineTo(sr-sw*.9,st+sh*.6);
-  ctx.lineTo(sr,st+sh);ctx.lineTo(sr+sw*.2,st+sh*.2);
-  ctx.lineTo(sr-tw*.18,st);
-  ctx.bezierCurveTo(sr-tw*.18-tw*.07,st+th*.09,sl+tw*.18+tw*.07,st+th*.09,sl+tw*.18,st);
-  ctx.closePath();ctx.fill();ctx.stroke();ctx.restore();
-  if(dImg){
-    const mW=tw*.52,mH=th*.38;
-    const sc=Math.min(mW/dImg.width,mH/dImg.height);
-    const drw=dImg.width*sc,drh=dImg.height*sc;
-    const drx=(W-drw)/2,dry=ty+th*.17;
-    if(col==='#141414'){ctx.globalCompositeOperation='screen';ctx.globalAlpha=.85;}
-    ctx.drawImage(dImg,drx,dry,drw,drh);
-    ctx.globalCompositeOperation='source-over';ctx.globalAlpha=1;
-  }
-}
-
-/* ══════════════════════════════════════════════════
-   PALETTE
-══════════════════════════════════════════════════ */
-function renderPalette(pal){
-  const el=$('palStrip');el.innerHTML='';
-  pal.forEach(c=>{
-    const s=document.createElement('div');s.className='psw';
-    s.style.background=`rgb(${Math.round(c[0])},${Math.round(c[1])},${Math.round(c[2])})`;
-    s.title=`rgb(${Math.round(c[0])},${Math.round(c[1])},${Math.round(c[2])})`;
-    el.appendChild(s);
-  });
-}
-function clearPalette(){$('palStrip').innerHTML='<span style="font-family:var(--mono);font-size:7px;color:var(--txt2);">paleta desactivada</span>';}
-
-/* ══════════════════════════════════════════════════
-   DOWNLOADS
-══════════════════════════════════════════════════ */
-$('btnPng').addEventListener('click', async () => {
-  if(!S.processedData) return;
-  if(S.useAPI && S.processedData.startsWith('http')) {
-    const r=await fetch(S.processedData);const b=await r.blob();
-    const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='print-ready.png';a.click();
-  } else {
-    const a=document.createElement('a');a.href=S.processedData;a.download='print-ready.png';a.click();
-  }
+/* ═══════════════════════════════════════
+   DOWNLOAD — siempre PNG transparente
+═══════════════════════════════════════ */
+$('btnDl').addEventListener('click', () => {
+  if (!S.resultData) return;
+  const name = (S.file?.name.replace(/\.[^.]+$/, '') || 'diseño') + '_sin-fondo.png';
+  const a = document.createElement('a');
+  a.href = S.resultData;
+  a.download = name;
+  a.click();
 });
 
-$('btnSvg').addEventListener('click', async () => {
-  if(!S.svgData) return;
-  if(S.useAPI && S.svgData.startsWith('http')) {
-    const r=await fetch(S.svgData);const b=await r.blob();
-    const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='print-ready.svg';a.click();
-  } else {
-    // local SVG
-    const a=document.createElement('a');a.href=S.svgData;a.download='print-ready.svg';a.click();
-  }
-});
-
-/* ══════════════════════════════════════════════════
+/* ═══════════════════════════════════════
    UI HELPERS
-══════════════════════════════════════════════════ */
-function setStatus(msg,cls){
-  const el=$('statusLn');el.textContent=msg;el.style.display='block';
-  el.className='status-ln '+(cls||'');
-}
-function setProgress(pct){$('progBar').style.width=pct+'%';}
-function setProcStatus(t,s){$('procT').textContent=t;$('procS').textContent=s;}
-function setState(txt,cls){
-  const el=$('cSt');
-  el.querySelector('span').textContent=txt;
-  el.className='coord-item st '+(cls||'');
-}
-function setAPIStatus(st){
-  const d=$('apiDot'),t=$('apiTxt');
-  if(st==='on'){d.className='api-dot on';t.textContent=S.useAPI?'API OK':'LOCAL';}
-  else if(st==='busy'){d.className='api-dot busy';t.textContent='PROCESANDO';}
-  else if(st==='err'){d.className='api-dot err';t.textContent='ERROR';}
-  else{d.className='api-dot';t.textContent='LOCAL';}
+═══════════════════════════════════════ */
+function setStatus(msg, cls) {
+  const el = $('statusEl');
+  el.textContent = msg;
+  el.style.display = 'block';
+  el.className = 'status ' + (cls || '');
 }
 
-/* ══════════════════════════════════════════════════
-   INIT
-══════════════════════════════════════════════════ */
-window.addEventListener('load', () => renderShirts(null));
-document.querySelectorAll('.rng').forEach(r=>{
-  r.addEventListener('input',()=>{
-    const min=+r.min,max=+r.max,v=+r.value;
-    r.style.setProperty('--p',((v-min)/(max-min)*100).toFixed(1)+'%');
-    if(r.id==='tolR') $('cTol').textContent=v;
-  });
-});
+function setP(pct) { $('progFill').style.width = pct + '%'; }
 
-// Coord bar live update for tolerance
-$('tolR').addEventListener('input',()=>{ $('cTol').textContent=$('tolR').value; });
+function setProc(t, s) {
+  $('procT').textContent = t;
+  $('procS').textContent = s;
+}
+
+function setState(txt, cls) {
+  const el = $('sbState');
+  el.querySelector('span').textContent = txt;
+  el.className = 'sb-item ' + (cls || '');
+}
 </script>
 </body>
 </html>
